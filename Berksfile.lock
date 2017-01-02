@@ -1,0 +1,26 @@
+DEPENDENCIES
+  git
+    path: site-cookbooks/git
+  nginx
+    path: site-cookbooks/nginx
+  php-env
+    path: site-cookbooks/php-env
+  postgresql
+    path: site-cookbooks/postgresql
+  python
+    path: site-cookbooks/python
+  rsync
+    path: site-cookbooks/rsync
+  yum-epel
+
+GRAPH
+  git (0.1.0)
+  nginx (0.1.0)
+    yum-epel (>= 0.0.0)
+  php-env (0.1.0)
+  postgresql (0.1.0)
+  python (0.1.0)
+  rsync (0.1.0)
+  yum (3.10.0)
+  yum-epel (0.6.5)
+    yum (~> 3.2)

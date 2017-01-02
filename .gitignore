@@ -1,0 +1,13 @@
+.vagrant
+/cookbooks
+
+# Bundler
+bin/*
+.bundle/*
+
+.kitchen/
+.kitchen.local.yml
+
+/package.box
+/.DS_Store
+/site-cookbooks/.DS_Store

@@ -1,0 +1,5 @@
+default['python']['user'] = "vagrant"
+default['python']['group'] = "vagrant"
+default['python']['anaconda_version'] = "anaconda3-4.0.0"
+default['python']['pyenv_url'] = "https://github.com/yyuu/pyenv.git"
+default['python']['pyenv-pip-rehash_url'] = "https://github.com/yyuu/pyenv-pip-rehash.git"
