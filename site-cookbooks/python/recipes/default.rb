@@ -48,7 +48,7 @@ end
 
 %w{uwsgi psycopg2 Flask-SQLAlchemy Flask-Migrate beautifulsoup4}.each do |pkg|
   execute "pip install #{pkg}" do
-    command "/home/vagrant/.pyenv/shims/pip install #{pkg}"
+    command "/home/#{node['python']['user']}/.pyenv/shims/pip install #{pkg}"
     action :run
     user node['python']['user']
     group node['python']['group']
