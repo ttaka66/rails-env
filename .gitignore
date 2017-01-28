@@ -10,4 +10,5 @@ bin/*
 
 /package.box
 /.DS_Store
+/nodes
 /site-cookbooks/.DS_Store
