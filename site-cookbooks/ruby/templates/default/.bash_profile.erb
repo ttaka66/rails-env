@@ -1,0 +1,13 @@
+if [ -f ~/.bashrc ]; then
+	. ~/.bashrc
+fi
+
+# User specific environment and startup programs
+
+PATH=$PATH:$HOME/bin
+
+export PATH
+export RBENV_ROOT="$HOME/.rbenv"
+export PATH="$RBENV_ROOT/bin:$PATH"
+eval "$(rbenv init -)"
+export PATH="$RBENV_ROOT/versions/<%= node['ruby']['ruby_version'] %>/bin/:$PATH"
