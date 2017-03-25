@@ -1,4 +1,4 @@
-# package "postgresql-9.3" do
+# package "postgresql-#{node['postgresql']['version']}" do
 #   action :install
 # end
 
@@ -26,7 +26,7 @@ execute "create-database-user" do
 end
 
 template "pg_hba.conf" do
-  path "/etc/postgresql/9.3/main/pg_hba.conf"
+  path "/etc/postgresql/#{node['postgresql']['version']}/main/pg_hba.conf"
   source "pg_hba.conf.erb"
   user node['postgresql']['super_user']
   mode "0644"
