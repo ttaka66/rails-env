@@ -1,7 +1,7 @@
 %w{curl g++ make zlib1g-dev libssl-dev libreadline-dev libyaml-dev libxml2-dev libxslt-dev libffi-dev sqlite3 libsqlite3-dev nodejs}.each do |pkg|
-	package pkg do
-		action :install
-	end
+  package pkg do
+    action :install
+  end
 end
 
 git "/home/#{node['ruby']['user']}/.rbenv" do
@@ -53,19 +53,15 @@ execute "rbenv global #{node['ruby']['ruby_version']}" do
   environment 'HOME' => "/home/#{node['ruby']['user']}"
 end
 
-#環境変数にする
-{'rails' => '~> 4.2'}.each do |pkg, version|
-  execute "gem install #{pkg} --version=\"#{version}\"" do
-    command "/home/#{node['ruby']['user']}/.rbenv/shims/gem install #{pkg} --version=\"#{version}\""
-    action :run
-    user node['ruby']['user']
-    group node['ruby']['group']
-    environment 'HOME' => "/home/#{node['ruby']['user']}"
-    not_if { File.exist?("/home/#{node['ruby']['user']}/.rbenv/shims/#{pkg}") }
-  end
+execute "gem install rails --version=\"#{node['ruby']['rails_version']}\"" do
+  command "/home/#{node['ruby']['user']}/.rbenv/shims/gem install rails --version=\"#{node['ruby']['rails_version']}\""
+  action :run
+  user node['ruby']['user']
+  group node['ruby']['group']
+  environment 'HOME' => "/home/#{node['ruby']['user']}"
+  not_if { File.exist?("/home/#{node['ruby']['user']}/.rbenv/shims/rails") }
 end
 
-#要修正(l42:railsインストール成功時に実行)
 execute "rbenv rehash" do
   command "/home/#{node['ruby']['user']}/.rbenv/bin/rbenv rehash"
   action :run
