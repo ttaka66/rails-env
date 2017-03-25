@@ -1,4 +1,8 @@
-package "postgresql" do
+package "postgresql-#{node['postgresql']['version']}" do
+  action :install
+end
+
+package "libpq-dev" do
   action :install
 end
 
