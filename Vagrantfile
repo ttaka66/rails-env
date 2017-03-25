@@ -3,10 +3,9 @@ Vagrant.configure(2) do |config|
   # config.berkshelf.enabled = false
   config.vm.define :webdb do |webdb|
     webdb.vm.hostname = 'webdb'
-    webdb.vm.box = 'ubuntu1404'
-    webdb.vm.box_url = 'https://cloud-images.ubuntu.com/vagrant/trusty/current/trusty-server-cloudimg-amd64-vagrant-disk1.box'
-    webdb.vm.network 'forwarded_port', guest: 80, host: 8080
-    webdb.vm.network 'forwarded_port', guest: 5000, host: 5000
+    webdb.vm.box = 'ubuntu/xenial64'
+    webdb.vm.network 'forwarded_port', guest: 80, host: 80
+    webdb.vm.network 'forwarded_port', guest: 3000, host: 3000
     webdb.vm.network 'private_network', ip: '10.0.1.10'
     webdb.vm.provision :chef_zero do |chef|
       chef.cookbooks_path = 'cookbooks'
@@ -16,13 +15,23 @@ Vagrant.configure(2) do |config|
         recipe[rsync]
         recipe[git]
         recipe[nginx]
-        recipe[python]
+        recipe[ruby]
         recipe[postgresql]
         recipe[postgresql::server]
         recipe[rsync]
       ]
+
+      chef.json = {
+        ruby: {
+          user: "ubuntu",
+          group: "ubuntu"
+        },
+        postgresql: {
+          user: "ubuntu"
+        }
+      }
     end
-    config.vm.synced_folder "/Users/#{ENV['USER']}/project/python-uwsgi/my_app/",  "/home/vagrant/my_app/", type: "rsync", create: true, owner: "vagrant", group: "vagrant", rsync__exclude: [".git/", "vendor/"]
+    # config.vm.synced_folder "/Users/#{ENV['USER']}/project/python-uwsgi/my_app/",  "/home/vagrant/my_app/", type: "rsync", create: true, owner: "vagrant", group: "vagrant", rsync__exclude: [".git/", "vendor/"]
   end
 
 end

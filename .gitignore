@@ -1,3 +1,4 @@
+.DS_Store
 .vagrant
 /cookbooks
 
@@ -9,6 +10,4 @@ bin/*
 .kitchen.local.yml
 
 /package.box
-/.DS_Store
 /nodes
-/site-cookbooks/.DS_Store
