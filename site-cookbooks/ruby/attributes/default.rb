@@ -1,5 +1,6 @@
 default['ruby']['user'] = "vagrant"
 default['ruby']['group'] = "vagrant"
 default['ruby']['ruby_version'] = "2.3.1"
+default['ruby']['rails_version'] = "~> 4.2"
 default['ruby']['rbenv_url'] = "git://github.com/sstephenson/rbenv.git"
 default['ruby']['ruby-build_url'] = "git://github.com/sstephenson/ruby-build.git"
