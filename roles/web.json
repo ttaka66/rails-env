@@ -5,7 +5,7 @@
   "run_list" : [
     "recipe[git]",
     "recipe[nginx]",
-    "recipe[python]",
+    "recipe[ruby]",
     "recipe[postgresql]",
     "recipe[rsync]"
   ]
