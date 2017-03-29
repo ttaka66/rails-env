@@ -12,6 +12,7 @@ Vagrant.configure(2) do |config|
       chef.nodes_path = 'nodes'
       # chef.roles_path = 'roles'
       chef.run_list = %w[
+        recipe[apt]
         recipe[rsync]
         recipe[git]
         recipe[nginx]
