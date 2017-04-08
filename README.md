@@ -20,7 +20,7 @@ These commands suppose that os of your ssh host machine is **Ubuntu16.14** and h
 
 ```bash
 $ berks vendor cookbooks
-$ knife zero bootstrap ubuntu@{YOUR_SSH_HOST} -i {YOUR_SSH_KEY_PATH} --node-name {NODE_NAME}
+$ knife zero bootstrap {YOUR_SSH_USER_NAME}@{YOUR_SSH_HOST} -i {YOUR_SSH_KEY_PATH} --node-name {NODE_NAME}
 $ knife node run_list add {NODE_NAME} 'role[web]'
 ($ knife node run_list add {NODE_NAME} 'role[db]')
 $ knife node environment set {NODE_NAME} ubuntu1604
