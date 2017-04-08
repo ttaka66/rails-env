@@ -19,7 +19,11 @@ You must select ubuntu AMI.
 
 ```bash
 $ berks vendor cookbooks
-$ knife zero bootstrap ubuntu@<YOUR_EC2_INSTANCE_HOST> -i <YOUR_AWS_KEY_PATH> --sudo --environment ec2_ubuntu --run-list "role[web]"( --node-name <NODE_NAME>)( --json-attributes {"ruby": {"ruby_version": "2.3.1", "rails_version": "~> 4.2"}})
+$ knife zero bootstrap ubuntu@{YOUR_EC2_INSTANCE_HOST} -i {YOUR_AWS_KEY_PATH} --node-name {NODE_NAME}
+$ knife node run_list add {NODE_NAME} 'role[web]'
+($ knife node run_list add {NODE_NAME} 'role[db]')
+$ knife node environment set {NODE_NAME} ec2_ubuntu
+$ knife zero converge "name:{NODE_NAME}" -i <YOUR_AWS_KEY_PATH> --node-name {NODE_NAME}
 ```
 
 ### Provisioning on Vagrant
@@ -38,9 +42,9 @@ $ rails new <application name> -d postgresql -T --skip-bundle
 $ cd  <application name>
 ```
 Note:
--d: database
--T: don't create Test::Unit
--skip-bundle: don't execute \`bundle install\`
+- -d: database
+- -T: don't create Test::Unit
+- -skip-bundle: don't execute \`bundle install\`
 
 Add Unicorn gem to Gemfile
 ```
@@ -105,7 +109,7 @@ $ (bundle exec )rake db:create
 Start Unicorn
 
 ```
-$ (bundle exec )unicorn_rails -c config/unicorn.rb -D
+$ (bundle exec )unicorn_rails -c config/unicorn.rb -D (-E production)
 ```
 
 (Stop Unicorn)
