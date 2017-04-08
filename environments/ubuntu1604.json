@@ -1,6 +1,6 @@
 {
-  "name" : "ec2_ubuntu",
-  "description" : "Ubuntu AMI environments on EC2 of AWS",
+  "name" : "ubuntu1604",
+  "description" : "Ubuntu16.14 environments",
   "chef_type" : "environment",
   "json_class" : "Chef::Environment",
   "override_attributes" : {
