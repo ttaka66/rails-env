@@ -9,22 +9,25 @@
 ## Requirement
 
 - Ruby
-- Chef
+- [Chef](https://www.chef.io/chef/)
+- [Knife-Zero](http://knife-zero.github.io/30_subcommands/)
 
 ## Usage
 
-### Provisioning on EC2 instance
+### Provisioning by SSH
 
-You must select ubuntu AMI.
+These commands suppose that os of your ssh host machine is **Ubuntu16.14** and have **ubuntu** user.
 
 ```bash
 $ berks vendor cookbooks
-$ knife zero bootstrap ubuntu@{YOUR_EC2_INSTANCE_HOST} -i {YOUR_AWS_KEY_PATH} --node-name {NODE_NAME}
+$ knife zero bootstrap ubuntu@{YOUR_SSH_HOST} -i {YOUR_SSH_KEY_PATH} --node-name {NODE_NAME}
 $ knife node run_list add {NODE_NAME} 'role[web]'
 ($ knife node run_list add {NODE_NAME} 'role[db]')
-$ knife node environment set {NODE_NAME} ec2_ubuntu
-$ knife zero converge "name:{NODE_NAME}" -i <YOUR_AWS_KEY_PATH> --node-name {NODE_NAME}
+$ knife node environment set {NODE_NAME} ubuntu1604
+$ knife zero converge "name:{NODE_NAME}"  --ssh-user {YOUR_SSH_USER_NAME} -i {YOUR_SSH_KEY_PATH}
 ```
+
+
 
 ### Provisioning on Vagrant
 
